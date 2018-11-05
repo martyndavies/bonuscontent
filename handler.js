@@ -16,13 +16,15 @@ const nexmo = new Nexmo({
 
 module.exports = {
   inbound: async ctx => {
-    const recipient = ctx.request.body.msisdn;
-    const message = `Thanks for participating! Your bonus content can be found at https://martyndavies.me/devrelbonus?ref=${recipient}`;
+    const { msisdn } = ctx.request.body;
+    const message = `Thanks for participating! Your bonus content can be found at ${
+      process.env.CONTENT_URL
+    }?ref=${msisdn}`;
 
     respondents.insert(ctx.request.body);
 
     nexmo.channel.send(
-      { type: 'sms', number: recipient },
+      { type: 'sms', number: msisdn },
       { type: 'sms', number: process.env.SENDER },
       {
         content: {
