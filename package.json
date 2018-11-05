@@ -1,0 +1,24 @@
+{
+  "name": "bonuscontent",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "koa": "^2.6.1",
+    "koa-bodyparser": "^4.2.1",
+    "koa-route": "^3.2.0",
+    "lokijs": "^1.5.5",
+    "nexmo": "^2.4.1-beta-1"
+  },
+  "devDependencies": {
+    "dotenv": "^6.1.0",
+    "nodemon": "^1.18.6"
+  }
+}
