@@ -25,8 +25,8 @@ const nexmo = new Nexmo({
 
 module.exports = {
   inbound: async ctx => {
-    const { msisdn } = ctx.request.body;
-    const message = `Thanks for participating! Your bonus content can be found at ${CONTENT_URL}?ref=${msisdn}`;
+    const { msisdn, messageId } = ctx.request.body;
+    const message = `Thanks for participating! Your bonus content can be found at ${CONTENT_URL}?ref=${messageId}`;
 
     respondents.insert(ctx.request.body);
 
