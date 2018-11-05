@@ -21,7 +21,7 @@ const nexmo = new Nexmo({
   apiKey: API_KEY,
   apiSecret: API_SECRET,
   applicationId: APPLICATION_ID,
-  privateKey: './private.key' || atob(process.env.PRIVATE_KEY)
+  privateKey: atob(process.env.PRIVATE_KEY) || './private.key'
 });
 
 module.exports = {
