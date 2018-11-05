@@ -9,5 +9,6 @@ const server = new Koa();
 server.use(bodyParser());
 
 server.use(router.post('/inbound', handler.inbound));
+server.use(router.get('/respondents', handler.getRespondents));
 
 server.listen(port, () => console.log(`Server listening on ${port}`));
