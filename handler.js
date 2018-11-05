@@ -2,6 +2,8 @@ if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config();
 }
 
+const atob = require('atob');
+
 const {
   API_KEY,
   API_SECRET,
@@ -19,7 +21,7 @@ const nexmo = new Nexmo({
   apiKey: API_KEY,
   apiSecret: API_SECRET,
   applicationId: APPLICATION_ID,
-  privateKey: './private.key'
+  privateKey: './private.key' || atob(process.env.PRIVATE_KEY)
 });
 
 module.exports = {

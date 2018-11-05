@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "atob": "^2.1.2",
     "koa": "^2.6.1",
     "koa-bodyparser": "^4.2.1",
     "koa-route": "^3.2.0",
