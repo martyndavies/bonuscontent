@@ -51,6 +51,6 @@ module.exports = {
   },
   getRespondents: async ctx => {
     const result = await respondents.find();
-    ctx.body = result;
+    ctx.body = { amountOfInteractions: result.length };
   }
 };
