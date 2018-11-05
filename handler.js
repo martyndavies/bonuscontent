@@ -2,30 +2,36 @@ if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config();
 }
 
+const {
+  API_KEY,
+  API_SECRET,
+  APPLICATION_ID,
+  CONTENT_URL,
+  SENDER
+} = process.env;
+
 const loki = require('lokijs');
 const db = new loki('loki.json');
 const respondents = db.addCollection('respondents');
 
 const Nexmo = require('nexmo');
 const nexmo = new Nexmo({
-  apiKey: process.env.API_KEY,
-  apiSecret: process.env.API_SECRET,
-  applicationId: process.env.APPLICATION_ID,
+  apiKey: API_KEY,
+  apiSecret: API_SECRET,
+  applicationId: APPLICATION_ID,
   privateKey: './private.key'
 });
 
 module.exports = {
   inbound: async ctx => {
     const { msisdn } = ctx.request.body;
-    const message = `Thanks for participating! Your bonus content can be found at ${
-      process.env.CONTENT_URL
-    }?ref=${msisdn}`;
+    const message = `Thanks for participating! Your bonus content can be found at ${CONTENT_URL}?ref=${msisdn}`;
 
     respondents.insert(ctx.request.body);
 
     nexmo.channel.send(
       { type: 'sms', number: msisdn },
-      { type: 'sms', number: process.env.SENDER },
+      { type: 'sms', number: SENDER },
       {
         content: {
           type: 'text',
